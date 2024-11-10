@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+    <style>
+        body {
+            min-width: 300px;
+            background-color: #4b4d57;
+            font-family: Arial, sans-serif;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+        }
+
+        .icon {
+            position: relative;
+            /* Adjust these values accordingly */
+            margin-right: 5px;
+            width: 30px; 
+            height: 30px;
+        }
+
+        .settings {
+            width: 100%;
+            height: 100%;
+            background-color: #2f302f;
+            padding-top: 10px;
+            padding-bottom: 10px;
+        }
+
+        /* Switches where user changes invidual settings */
+        .settingsSwitch {
+            position: relative;
+            display: inline-block;
+            /* width: height ratio is 60:34 */
+            width: 46px;
+            height: 26px;
+        }
+
+        /* slider for individual settings */
+        .settingsSlider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #909199;
+            -webkit-transition: .4s;
+            transition: .4s;
+            }
+
+        .settingsSlider:before {
+            position: absolute;
+            content: "";
+            height: 20px;
+            width: 20px;
+            left: 3px;
+            bottom: 3px;
+            background-color: white;
+            -webkit-transition: .4s;
+            transition: .4s;
+        }
+
+        input:checked + .settingsSlider {
+            /* background-color: #2196F3; */
+            background-color: #3dd466;
+        }
+
+        input:focus + .settingsSlider {
+            /* box-shadow: 0 0 1px #2196F3; */
+            box-shadow: 0 0 1px #3dd466;
+        }
+
+        input:checked + .settingsSlider:before {
+            -webkit-transform: translateX(20px);
+            -ms-transform: translateX(20px);
+            transform: translateX(20px);
+        }
+
+        /* Rounded sliders */
+        .settingsSlider.round {
+            border-radius: 26px;
+        }
+
+        .settingsSlider.round:before {
+            border-radius: 50%;
+        }
+
+        .masterSwitchContainer {
+            width: 100%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: left;
+            transform: skew(-14deg);
+            background-color: #2f302f;
+            border-left: #bbb 1px solid;
+            /* expand to the right to cover whole screen */
+            margin-right: -30px;
+            padding-left: 10px;
+        }
+
+        .masterSwitchContainer > * {
+            transition: transform 0s linear;
+            transform: skew(14deg);
+        }
+
+        .settingsOption {
+            width: 90%;
+            padding-left: 5%;
+            padding-right: 5%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+    
+        .title {
+            width: 100%;
+            display:inline-flex; 
+            align-items: left;
+            justify-content: space-between;
+        }
+
+        .logoSection {
+            display: inline-flex;
+            align-items: center;
+            justify-content: left;
+            width: 100%;
+            font-family: 'Trebuchet MS', sans-serif;
+            align-items: left;
+            padding-left: 10px;
+            padding-right: 20px;
+            border-bottom: #bbb 1px solid;
+        }
+
+        .masterSwitchIcon {
+            position: relative;
+            margin-right: 5px;
+            width: 40px; 
+            height: 40px;
+            /* start off rotated 180 degrees (for power off when unchecked) */
+            transform: rotate(-180deg) skew(14deg);
+            border-radius: 50%;
+            transition: all ease-in-out .3s;
+            box-shadow: 0 0 10px rgba(0,0,0,0.5);
+            /* background-color: red; */
+        }
+
+        .masterSwitchIcon:hover {
+            cursor: pointer;
+        }
+
+        input:checked + .masterSwitchIcon {
+            background-color: #3dd466;
+            transform: rotate(0deg) skew(14deg);
+        }
+
+        .masterSwitchText {
+            padding-right: 10px;
+        }
+    </style>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Disable Gif Autoplay</title>
+</head>
+<body>
+    <div class="title">
+        <div class="logoSection">
+            <img src="images/logo128.png" class="icon"/>
+            <h2>Gif Disabler</h2>
+        </div>
+        <div class="masterSwitchContainer">
+            <p class="masterSwitchText" id="masterSwitchText">OFF</p>
+            <input type="checkbox" id="masterSwitchToggleCheckbox" class="toggle" hidden>
+            <img src="images/powerButtonOutlineWhite.png" class="masterSwitchIcon" id="masterSwitchIcon"/>
+        </div>
+    </div>
+    <!-- <hr class="solid"> -->
+    <div class="settings">
+        <div class="settingsOption">
+            <p>Play GIFs on hover</p>
+
+            <label class="settingsSwitch" id="playOnHoverToggle">
+                <input type="checkbox" class="toggle" id="playOnHoverCheckbox">
+                <span class="settingsSlider round"></span>
+            </label>
+        </div>
+    </div>
+    <script src="popupScript.js"></script>
+</body>
+</html>
